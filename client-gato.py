@@ -4,9 +4,9 @@ import socket
 import os
 from time import time
 
-HOST = "127.0.0.1"  # The server's hostname or IP address
+HOST = "192.168.1.76"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
-serverAddressPort = ("127.0.0.1", 65432)
+serverAddressPort = ("192.168.1.76", 65432)
 bufferSize = 1024
 
 
