@@ -40,11 +40,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
         while True:
             os.system('cls')
             data = UDPClientSocket.recvfrom(bufferSize)
-            bandera = int.from_bytes(data, "big")
+            bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
                 pass
             else:
-                data = UDPClientSocket.recvfrom(bufferSize)
                 print('Finalizado.')
                 imprimir_tablero(tablero, 3)
                 if bandera == 1:
@@ -64,7 +63,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
             tablero[x][y] = 'X'
             imprimir_tablero(tablero, 3)
             data = UDPClientSocket.recvfrom(bufferSize)
-            bandera = int.from_bytes(data, "big")
+            bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
                 pass
             else:
@@ -81,9 +80,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 break
             else:
                 data = UDPClientSocket.recvfrom(bufferSize)
-                x_server = int.from_bytes(data, "big")
+                x_server = int.from_bytes(data[0], "big")
                 data = UDPClientSocket.recvfrom(bufferSize)
-                y_server = int.from_bytes(data, "big")
+                y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
                 print("El servidor eligio")
@@ -95,11 +94,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
         while True:
             os.system('cls')
             data = UDPClientSocket.recvfrom(bufferSize)
-            bandera = int.from_bytes(data, "big")
+            bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
                 pass
             else:
-                data = UDPClientSocket.recvfrom(bufferSize)
                 print('Finalizado.')
                 imprimir_tablero(tablero, 5)
                 if bandera == 1:
@@ -119,7 +117,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
             tablero[x][y] = 'X'
             imprimir_tablero(tablero, 5)
             data = UDPClientSocket.recvfrom(bufferSize)
-            bandera = int.from_bytes(data, "big")
+            bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
                 pass
             else:
@@ -136,14 +134,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 break
             else:
                 data = UDPClientSocket.recvfrom(bufferSize)
-                x_server = int.from_bytes(data, "big")
+                x_server = int.from_bytes(data[0], "big")
                 data = UDPClientSocket.recvfrom(bufferSize)
-                y_server = int.from_bytes(data, "big")
+                y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
                 print("El servidor eligio")
                 imprimir_tablero(tablero, 5)
     tiempo_final = time()
     tiempo_ejecucion = tiempo_final - tiempo_inicial
-    print('Duracion de la partida:', end="")
-    print(tiempo_ejecucion)
+    print('Duracion de la partida: %.2f segs.' % round(tiempo_ejecucion,2))

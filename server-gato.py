@@ -97,7 +97,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPServerSocket:
     while True:
         print("Esperando a recibir datos... ")
         data, address = UDPServerSocket.recvfrom(bufferSize)
-        dificultad = int.from_bytes(data, byteorder='big')
+        dificultad = int.from_bytes(data, "big")
         print("Recibido,", dificultad, "   de ", address)
         if dificultad == 1:
             tablero = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
