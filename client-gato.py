@@ -55,6 +55,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                     print('Perdiste :( ')
                 break
             while True:
+                imprimir_tablero(tablero, 3)
                 print("Elige casilla")
                 x = int(input())
                 y = int(input())
@@ -65,9 +66,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
-            imprimir_tablero(tablero, 3)
-            os.system("pause")
             os.system("cls")
+            imprimir_tablero(tablero, 3)
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -122,9 +122,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
-            imprimir_tablero(tablero, 5)
-            os.system("pause")
             os.system("cls")
+            imprimir_tablero(tablero, 5)
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
