@@ -113,6 +113,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                     print('Perdiste :( ')
                 break
             while True:
+                imprimir_tablero(tablero, 5)
+                print("Elige casilla")
                 x = int(input())
                 y = int(input())
                 if tablero[x][y] == '-':
@@ -147,7 +149,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
-                print("El servidor eligio")
+                print("El servidor eligio casilla.")
                 imprimir_tablero(tablero, 5)
                 os.system("pause")
                 os.system("cls")
