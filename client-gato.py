@@ -31,7 +31,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
     serverAddressPort = (HOST, PORT)
     os.system("cls")
     tiempo_inicial = time()
-    print("------Bienvenido al Gato Dummy------")
+    print("---------BIENVENIDO AL GATO DUMMY---------")
     print("Elige dificultad ;)")
     print("1.- Dificultad principiante")
     print("2.- Dificultad avanzada")
@@ -55,6 +55,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                     print('Perdiste :( ')
                 break
             while True:
+                print("Elige casilla")
                 x = int(input())
                 y = int(input())
                 if tablero[x][y] == '-':
@@ -90,7 +91,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 tablero[x_server][y_server] = 'O'
                 count += 1
                 os.system("cls")
-                print("El servidor eligio")
+                print("El servidor eligio casilla.")
                 imprimir_tablero(tablero, 3)
     if dificultad == 2:
         tablero = [['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'],
