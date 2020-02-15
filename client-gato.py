@@ -4,9 +4,6 @@ import socket
 import os
 from time import time
 
-HOST = "192.168.1.76"  # The server's hostname or IP address
-PORT = 65432  # The port used by the server
-serverAddressPort = ("192.168.1.76", 65432)
 bufferSize = 1024
 
 
@@ -27,6 +24,12 @@ def imprimir_tablero(tablero, n):
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
     count = 0
     bandera = 0
+    print("Ingresa direccion del servidor")
+    HOST = input()
+    print("Ingresa puerto")
+    PORT = int(input())
+    serverAddressPort = (HOST, PORT)
+    os.system("cls")
     tiempo_inicial = time()
     print("------Bienvenido al Gato Dummy------")
     print("Elige dificultad ;)")
@@ -38,7 +41,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
         tablero = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
         imprimir_tablero(tablero, 3)
         while True:
-            os.system('cls')
+            os.system("cls")
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -61,6 +64,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
+            os.system("cls")
             imprimir_tablero(tablero, 3)
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
@@ -85,6 +89,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
+                os.system("cls")
                 print("El servidor eligio")
                 imprimir_tablero(tablero, 3)
     if dificultad == 2:
@@ -115,6 +120,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
+            os.system("cls")
             imprimir_tablero(tablero, 5)
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
@@ -139,8 +145,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
+                os.system("cls")
                 print("El servidor eligio")
                 imprimir_tablero(tablero, 5)
     tiempo_final = time()
     tiempo_ejecucion = tiempo_final - tiempo_inicial
-    print('Duracion de la partida: %.2f segs.' % round(tiempo_ejecucion,2))
+    print('Duracion de la partida: %.2f segs.' % round(tiempo_ejecucion, 2))
