@@ -36,12 +36,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
     print("1.- Dificultad principiante")
     print("2.- Dificultad avanzada")
     dificultad = int(input())
+    os.system("cls")
     UDPClientSocket.sendto(bytes([dificultad]), serverAddressPort)
     if dificultad == 1:
         tablero = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
         imprimir_tablero(tablero, 3)
         while True:
-            os.system("cls")
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -65,8 +65,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
-            os.system("cls")
             imprimir_tablero(tablero, 3)
+            os.system("pause")
+            os.system("cls")
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -90,15 +91,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
-                os.system("cls")
                 print("El servidor eligio casilla.")
                 imprimir_tablero(tablero, 3)
+                os.system("pause")
+                os.system("cls")
     if dificultad == 2:
         tablero = [['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'],
                    ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-']]
         imprimir_tablero(tablero, 5)
         while True:
-            os.system('cls')
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -121,8 +122,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 else:
                     print("Casilla Ocupada :C")
             tablero[x][y] = 'X'
-            os.system("cls")
             imprimir_tablero(tablero, 5)
+            os.system("pause")
+            os.system("cls")
             data = UDPClientSocket.recvfrom(bufferSize)
             bandera = int.from_bytes(data[0], "big")
             if bandera == 0:
@@ -146,9 +148,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as UDPClientSocket:
                 y_server = int.from_bytes(data[0], "big")
                 tablero[x_server][y_server] = 'O'
                 count += 1
-                os.system("cls")
                 print("El servidor eligio")
                 imprimir_tablero(tablero, 5)
+                os.system("pause")
+                os.system("cls")
     tiempo_final = time()
     tiempo_ejecucion = tiempo_final - tiempo_inicial
     print('Duracion de la partida: %.2f segs.' % round(tiempo_ejecucion, 2))
+    os.system("pause")
